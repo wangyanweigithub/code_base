@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>简易数据库示例</title>
+    <script type="text/javascript">
+        //saveStorage是一个保存数据的方法
+        function saveStorage() {
+            //创建一个data对象，将数据保存在该对象的属性中
+            var data = new Object;
+            data.name = document.getElementById('name').value;
+            data.email = document.getElementById('email').value;
+            data.tel = document.getElementById('tel').value;
+            data.memo = document.getElementById('memo').value;
+            //将对象转换成json格式的文本数据，并将其返回
+            var str = JSON.stringify(data);
+            //通过localStorage.setItem(key,value);方法保存数据
+            localStorage.setItem(data.name, str);
+            alert("数据已保存。");
+        }
+        //findStorage是一个查找数据的方法
+        function findStorage(id) {
+            var find = document.getElementById('find').value;
+            var str = localStorage.getItem(find);
+            //将从localStorag中获取的数据转换成json对象
+            var data = JSON.parse(str);
+            var result = "姓名: " + data.name + '<br>';
+            result += "EMAIL: " + data.email + '<br>';
+            result += "电话号码: " + data.tel + '<br>';
+            result += "描述: " + data.memo + '<br>';
+            var target = document.getElementById(id);
+            target.innerHTML = result;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>使用Web Storage来做简易数据库示例</h1>
+    <table>
+        <tr>
+            <td>姓名:</td>
+            <td><input type="text" id="name"></td>
+        </tr>
+        <tr>
+            <td>邮箱:</td>
+            <td><input type="text" id="email"></td>
+        </tr>
+        <tr>
+            <td>电话号码:</td>
+            <td><input type="text" id="tel"></td>
+        </tr>
+        <tr>
+            <td>描述:</td>
+            <td><input type="text" id="memo"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" value="保存数据" onclick="saveStorage();"></td>
+        </tr>
+    </table>
+    <hr>
+    <p>请输入姓名:<input type="text" id="find">
+        <input type="button" value="查找" onclick="findStorage('msg');">
+    </p>
+    <p id="msg"></p>
+</body>
