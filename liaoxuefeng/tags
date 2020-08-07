@@ -1,0 +1,20 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Config	config.py	/^class Config(object):$/;"	c	inherits:object
+Spider	spider.py	/^class Spider(object):$/;"	c	inherits:object
+__init__	config.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:Config	access:public
+__init__	spider.py	/^    def __init__(self, doc_name, settings=None):$/;"	m	class:Spider	access:public
+domain	config.py	/^domain = "https:\/\/www.liaoxuefeng.com"$/;"	v
+final_file	spider.py	/^    def final_file():$/;"	m	class:Spider	access:public
+get_page	spider.py	/^    def get_page(self):$/;"	m	class:Spider	access:public
+get_urls	config.py	/^    def get_urls(url):$/;"	m	class:Config	access:public
+get_urls	spider.py	/^    def get_urls(self):$/;"	m	class:Spider	access:public
+headers	config.py	/^    def headers(self):$/;"	m	class:Config	access:public
+repair_md	spider.py	/^    def repair_md():$/;"	m	class:Spider	access:public
+root	config.py	/^root = "https:\/\/www.liaoxuefeng.com\/wiki\/1022910821149312"$/;"	v
+spi	spider.py	/^spi = Spider("js").get_page()$/;"	v
+urls	spider.py	/^    def urls(self):$/;"	m	class:Spider	access:public

@@ -1,3 +1,6 @@
+import logging
+
+
 header = """
     Host: www.liaoxuefeng.com
     User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0
@@ -15,21 +18,32 @@ root = "https://www.liaoxuefeng.com/wiki/1022910821149312"
 domain = "https://www.liaoxuefeng.com"
 
 
-class config(object):
+class Config(object):
     def __init__(self, *args, **kwargs):
         self.root = kwargs['root'] if kwargs.get('root') else root
         self.domain = kwargs['domain'] if kwargs.get('domain') else domain
-        self.header = None
+        self._headers = None
+        self.logger = logging.getLogger(__name__)
+        self.url_file = {"js": "urls.json"}
+        self.docs= {"js": "1022910821149312"}
+        self.log = logging.getLogger(__name__)
+        self.log.setLevel(logging.INFO)
+        sh = logging.StreamHandler()
+        sh.setLevel(logging.INFO)
+        fh = logging.FileHandler('spider.log')
+        fh.setLevel(logging.ERROR)
+        self.log.addHandler(sh)
+        self.log.addHandler(fh)
 
     @property
     def headers(self):
-        if self.headers:
-            return self.headers
+        if self._headers:
+            return self._headers
 
         header_dict = dict([i.strip().split(":", 1) for i in header.strip().split("\n")])
         headers = {k: v.strip() for k, v in header_dict.items()}
-        self.headers = headers
-        return header
+        self._headers = headers
+        return self._headers
 
 
     def get_urls(url):
