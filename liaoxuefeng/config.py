@@ -13,19 +13,18 @@ header = """
     Cache-Control: max-age=0
 """
 
-root = "https://www.liaoxuefeng.com/wiki/1022910821149312"
-
 domain = "https://www.liaoxuefeng.com"
 
 
 class Config(object):
-    def __init__(self, *args, **kwargs):
-        self.root = kwargs['root'] if kwargs.get('root') else root
+    def __init__(self, doc_name, *args, **kwargs):
         self.domain = kwargs['domain'] if kwargs.get('domain') else domain
+        self.docs= {"js": "1022910821149312", "git": "896043488029600"}
+        self.root = kwargs['root'] if kwargs.get('root') else \
+            self.domain + "/wiki/" + self.docs[doc_name]
         self._headers = None
         self.logger = logging.getLogger(__name__)
         self.url_file = {"js": "urls.json"}
-        self.docs= {"js": "1022910821149312"}
         self.log = logging.getLogger(__name__)
         self.log.setLevel(logging.INFO)
         sh = logging.StreamHandler()
