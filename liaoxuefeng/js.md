@@ -1192,7 +1192,7 @@ var scores = [95, 75, 85];
 var m = new Map([['Michael', 95], ['Bob', 75], ['Tracy', 85]]);
 m.get('Michael'); // 95
 ```
-5. 初始化Map需要一个二维数组，或者直接初始化一个空Map。Map具有以下方法：
+5. **初始化Map需要一个二维数组，或者直接初始化一个空Map。Map具有以下方法：**
 
 ```
 var m = new Map(); // 空Map
@@ -1279,22 +1279,24 @@ for (var x of m) { // 遍历Map
     console.log(x[0] + '=' + x[1]);
 }
 ```
-5. 你可能会有疑问，for ... of循环和for ... in循环有何区别？
+5. 你可能会有疑问，**for ... of循环和for ... in循环有何区别？**
 
-6. for ... in循环由于历史遗留问题，它遍历的实际上是对象的属性名称。一个Array数组实际上也是一个对象，它的每个元素的索引被视为一个属性。
+	1. for ... in循环由于历史遗留问题，它遍历的实际上是对象的属性名称。一个Array数组实际上也是一个对象，
+	它的每个元素的索引被视为一个属性。
 
-7. 当我们手动给Array对象添加了额外的属性后，for ... in循环将带来意想不到的意外效果：
+	2. 当我们手动给Array对象添加了额外的属性后，for ... in循环将带来意想不到的意外效果：
 
-```
-var a = ['A', 'B', 'C'];
-a.name = 'Hello';
-for (var x in a) {
-    console.log(x); // '0', '1', '2', 'name'
-}
-```
-8. for ... in循环将把name包括在内，但Array的length属性却不包括在内。
+	```
+	var a = ['A', 'B', 'C'];
+	a.name = 'Hello';
+	for (var x in a) {
+		console.log(x); // '0', '1', '2', 'name'
+	}
+	```
+	3. for ... in循环将把name包括在内，但Array的length属性却不包括在内。
 
-9. for ... of循环则完全修复了这些问题，它只循环集合本身的元素：
+
+6. for ... of循环则完全修复了这些问题，它只循环集合本身的元素：
 
 ```
 var a = ['A', 'B', 'C'];
@@ -1303,9 +1305,11 @@ for (var x of a) {
     console.log(x); // 'A', 'B', 'C'
 }
 ```
-10. 这就是为什么要引入新的for ... of循环。
+7. <font color=green>注意: 发现of对对象来说不可用</font>
 
-11. 然而，更好的方式是直接使用iterable内置的forEach方法，它接收一个函数，每次迭代就自动回调该函数。以Array为例：
+8. 这就是为什么要引入新的for ... of循环。
+
+9. 然而，更好的方式是直接使用iterable内置的forEach方法，它接收一个函数，每次迭代就自动回调该函数。以Array为例：
 
 ```
 'use strict';
@@ -8773,5 +8777,3 @@ ReactDOM.render(
 
 2. 
 window.hurry = true;
-
-
