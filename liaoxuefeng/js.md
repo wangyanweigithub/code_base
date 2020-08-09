@@ -1305,11 +1305,10 @@ for (var x of a) {
     console.log(x); // 'A', 'B', 'C'
 }
 ```
-7. <font color=green>注意: 发现of对对象来说不可用</font>
 
-8. 这就是为什么要引入新的for ... of循环。
+7. 这就是为什么要引入新的for ... of循环。
 
-9. 然而，更好的方式是直接使用iterable内置的forEach方法，它接收一个函数，每次迭代就自动回调该函数。以Array为例：
+8. 然而，更好的方式是直接使用iterable内置的forEach方法，它接收一个函数，每次迭代就自动回调该函数。以Array为例：
 
 ```
 'use strict';
@@ -1322,9 +1321,9 @@ a.forEach(function (element, index, array) {
     console.log(element + ', index = ' + index);
 });
 ```
-12. 注意，forEach()方法是ES5.1标准引入的，你需要测试浏览器是否支持。
+9. 注意，forEach()方法是ES5.1标准引入的，你需要测试浏览器是否支持。
 
-13. Set与Array类似，但Set没有索引，因此回调函数的前两个参数都是元素本身：
+10. Set与Array类似，但Set没有索引，因此回调函数的前两个参数都是元素本身：
 
 ```
 var s = new Set(['A', 'B', 'C']);
