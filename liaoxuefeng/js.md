@@ -4611,23 +4611,6 @@ var checkRegisterForm = function () {
 
 3. 出于安全考虑，浏览器只允许用户点击<input type="file">来选择本地文件，用JavaScript对<input type="file">的value赋值是没有任何效果的。当用户选择了上传某个文件后，JavaScript也无法获得该文件的真实路径：
 
-4. 
-$(function () {
-    var
-        fileInput = document.getElementById('test-file-upload'),
-        filePath = document.getElementById('test-get-filename');
-    fileInput.addEventListener('change', function () {
-        filePath.innerText = fileInput.value;
-    });
-});
-
-
-5. 
-    
-    	
-    
-    待上传文件: 
-
 
 6. 通常，上传的文件都由后台服务器处理，JavaScript可以在提交表单时对文件扩展名做检查，以便防止用户上传无效格式的文件：
 
@@ -4680,14 +4663,6 @@ $(function() {
 
 
 6. 
-    图片预览：
-    
-    
-    	
-    
-    
-
-
 ```
 var
     fileInput = document.getElementById('test-image-file'),
