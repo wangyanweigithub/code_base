@@ -4872,7 +4872,7 @@ if (window.XMLHttpRequest) {
 ```
 foo('data');
 ```
-10. 这样一来，我们如果在页面中先准备好foo()函数，然后给页面动态加一个<script>节点，相当于动态读取外域的JavaScript资源，最后就等着接收回调了。
+10. 这样一来，我们如果在页面中先准备好foo()函数，然后给页面动态加一个`<script>`节点，相当于动态读取外域的JavaScript资源，最后就等着接收回调了。
 
 11. 以163的股票查询URL为例，对于URL：http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice，你将得到如下返回：
 
@@ -4882,14 +4882,7 @@ refreshPrice({"0000001":{"code": "0000001", ... });
 12. 因此我们需要首先在页面中准备好回调函数：
 
 13. 
-function refreshPrice(data) {
-    var p = document.getElementById('test-jsonp');
-    p.innerHTML = '当前价格：' +
-        data['0000001'].name +': ' + 
-        data['0000001'].price + '；' +
-        data['1399001'].name + ': ' +
-        data['1399001'].price;
-}
+```
 function getPrice() {
     var
         js = document.createElement('script'),
@@ -4898,8 +4891,6 @@ function getPrice() {
     head.appendChild(js);
 }
 
-
-```
 function refreshPrice(data) {
     var p = document.getElementById('test-jsonp');
     p.innerHTML = '当前价格：' +
@@ -5133,13 +5124,8 @@ new Promise(function (resolve, reject) {
     log('Failed: ' + reason);
 });
 ```
-18. 
-    Log:
-
 
 19. 可见Promise最大的好处是在异步执行的流程中，把执行代码和处理结果的代码清晰地分离了：
-
-20. 
 
 21. Promise还可以做更多的事情，比如，有若干个异步任务，需要先做任务1，如果成功后再做任务2，任何任务失败则不再继续并执行错误处理函数。
 
@@ -5448,9 +5434,6 @@ var js = document.createElement('script');
 js.src = 'http://img1.money.126.net/data/hs/kline/day/history/2015/0000001.json?callback=loadStockData&t=' + Date.now();
 document.getElementsByTagName('head')[0].appendChild(js);
 ```
-3. 
-
-4. 下载为图片
 
 ## jQuery
 1. 你可能听说过jQuery，它名字起得很土，但却是JavaScript世界中使用最广泛的一个库。
@@ -5659,64 +5642,6 @@ $('p.red,p.green'); // 把<p class="red">和<p class="green">都选出来
 ```
 2. 要注意的是，选出来的元素是按照它们在HTML中出现的顺序排列的，而且不会有重复元素。例如，<p class="red green">不会被上面的$('p.red,p.green')选择两次。
 
-#### 练习 
-1. 使用jQuery选择器分别选出指定元素：
-
-2. 
-
-仅选择JavaScript
-
-
-仅选择Erlang
-
-
-选择JavaScript和Erlang
-
-
-选择所有编程语言
-
-
-选择名字input
-
-
-选择邮件和名字input
-
-
-
-```
-<!-- HTML结构 -->
-<div id="test-jquery">
-    <p id="para-1" class="color-red">JavaScript</p>
-    <p id="para-2" class="color-green">Haskell</p>
-    <p class="color-red color-green">Erlang</p>
-    <p name="name" class="color-black">Python</p>
-    <form class="test-form" target="_blank" action="#0" onsubmit="return false;">
-        <legend>注册新用户</legend>
-        <fieldset>
-            <p><label>名字: <input name="name"></label></p>
-            <p><label>邮件: <input name="email"></label></p>
-            <p><label>口令: <input name="password" type="password"></label></p>
-            <p><button type="submit">注册</button></p>
-        </fieldset>
-    </form>
-</div>
-```
-3. 运行查看结果：
-
-```
-'use strict';
-
-var selected = null;
-----
-selected = ???;
-----
-// 高亮结果:
-if (!(selected instanceof jQuery)) {
-    return console.log('不是有效的jQuery对象!');
-}
-$('#test-jquery').find('*').css('background-color', '');
-selected.css('background-color', '#ffd351');
-```
 ### 操作DOM
 1. jQuery的选择器很强大，用起来又简单又灵活，但是搞了这么久，我拿到了jQuery对象，到底要干什么？
 
