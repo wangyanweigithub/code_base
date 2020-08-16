@@ -50,15 +50,19 @@ class Spider(object):
                     if link is not None:
                         self.info(ele.tag + "\n" + ele[0].tag + "\n" + ele[0].tag)
                         urls[toc][link.text] = link.attrib["href"]
+                    depth3 = ele.xpath(u"div[@depth=3]")
+                    if depth3:
+                        for depth3_div in depth3:
+                            depth3_link = depth3_div.xpath(u"a")[0]
+                            urls[toc][depth3_link.text] = depth3_link.attrib["href"]
 
         self._urls = urls
-        self.redis.setex(self.doc_name + "_urls", 3600, str(self._urls))
+        self.redis.setex(self.doc_name + "_urls", 360, str(self._urls))
 
 
     def get_page(self):
         result = ["# {}\n".format(self.doc_name)]
         with open("{}.md".format(self.doc_name), "w") as f:
-            print(self.urls)
             self.info(self.urls)
             for toc, child in self.urls.items():
                     result.append("## {}\n".format(toc))
@@ -85,13 +89,14 @@ class Spider(object):
                                     result[-1] += "```\n"
                                 else:
                                     p_label = i.xpath("string(.)")
-                                    result.append("{}. {}\n\n".format(str(p_index), p_label))
-                                    p_index += 1
+                                    if p_label:
+                                        result.append("{}. {}\n\n".format(str(p_index), p_label))
+                                        p_index += 1
                         except Exception as e:
                             self.error(e)
                             pass
             f.writelines(result)
 
 
-#spi = Spider("js").get_page()
-spi = Spider("git").get_page()
+spi = Spider("js").get_page()
+#spi = Spider("git").get_page()

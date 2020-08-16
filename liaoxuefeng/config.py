@@ -43,23 +43,3 @@ class Config(object):
         headers = {k: v.strip() for k, v in header_dict.items()}
         self._headers = headers
         return self._headers
-
-
-    def get_urls(url):
-        urls = []
-        page = requests.get(self.root, headers=self.headers)
-        dom = bs4.BeautifulSoup(page.text, 'html.parser')
-        a_labels = dom.find_all('a', attrs={'href': True})
-        for i in a_labels:
-            urls.append(i.get("href"))
-
-        get_urls(url)
-        urls = [i for i in urls if i.startswith("/wik")]
-
-        with open(js_urls, 'w') as f:
-            url_str = "\n".join(urls)
-            f.write(url_str)
-
-        return urls
-
-
