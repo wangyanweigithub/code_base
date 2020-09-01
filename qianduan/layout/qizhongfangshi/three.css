@@ -1,0 +1,40 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+	min-width: 550px;
+}
+
+.box {
+	padding: 0 150px 0 200px;
+	height:80%;
+	overflow: hidden;
+}
+
+.colum {
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+.main {
+	width: 100%;
+	background: yellow;
+}
+
+.left {
+	margin-left: -100%;
+	right: 200px;
+	width: 200px;
+	background: red;
+}
+
+.right {
+	margin-left: -150px;
+	left: 150px;
+	width: 150px;
+	background: blue;
+}

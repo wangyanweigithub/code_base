@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>三栏布局——圣杯布局</title>
+  <style>
+    * {
+    ¦ margin: 0;
+    ¦ padding: 0;
+    }
+    body {
+    ¦ min-width: 550px;
+    }
+    .container {
+    ¦ padding: 0 150px 0 200px;
+    ¦ overflow: hidden;
+    }
+    .column {
+    ¦ position: relative;
+    ¦ float: left;
+    ¦ min-height: 100px;
+    }
+    .left {
+    ¦ right: 200px;
+    ¦ margin-left: -100%;
+    ¦ width: 200px;
+    ¦ background: #ffbbff;
+    }
+    .center {
+    ¦ width: 100%;
+    ¦ background: #bfefff;
+    }
+    .right {
+    ¦ left: 150px;
+    ¦ margin-left: -150px;
+    ¦ width: 150px;
+    ¦ background: #eeee00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="column center">center</div>
+    <div class="column left">left</div>
+    <div class="column right">right</div>
+  </div>
+</body>
+</html>
+
