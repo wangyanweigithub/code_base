@@ -10,9 +10,12 @@
 <div class="container" id="app">
 	<div class="header">
 		<span v-bind:title="message">
-		鼠标悬停在这里看到
+			鼠标悬停在这里看到
 		</span>
-		{{message}}	
+
+		<div class="message" v-if="seen">
+			{{message}}	
+		</div>
 	<div>
 	<div class="content">
 		<div class="left"></div>
