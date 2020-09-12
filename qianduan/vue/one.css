@@ -1,3 +1,17 @@
 .header {
 	border: 1px solid red;
 }
+
+.video {
+	overflow: hidden;
+}
+
+video {
+	float: left;
+	border-left: 2px solid red;
+	margin: 0 20px 0 0;
+}
+
+video:first-child {
+	border: 1px solid blue;
+}

@@ -20,6 +20,11 @@
 	<div class="content">
 		<div class="left"></div>
 		<div class="main"></div>
+		<div class="video">
+			<video  width="320" height="240" controls="controls" v-for="video in videos">
+				<source type="video/mp4" :src="video" />
+			</video>
+		</div>
 		<div class="right"></div>
 	</div>
 	<div class="footer"></div>
