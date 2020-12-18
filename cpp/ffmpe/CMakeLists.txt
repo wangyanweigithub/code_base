@@ -1,31 +1,16 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required (VERSION 3.8)
+
 project(one)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "-D__STDC_CONSTANT_MACROS")
+set(CMAKE_CXX_FLAGS "-fpermissive")
+# 设置头文件的查找位置
+include_directories("/usr/local/ffmpeg/include")
 
-add_executable(one one.cpp)
+link_directories("/usr/local/ffmpeg/lib")
 
-find_path( AVCODEC_INCLUDE_DIR libavcodec/avcodec.h )
-find_library( AVCODEC_LIBRARY avcodec )
+add_executable (two FFMPEG-study-master/FFmpeg-playAudio.cpp)
 
-find_path( AVFORMAT_INCLUDE_DIR libavformat/avformat.h )
-find_library( AVFORMAT_LIBRARY avformat )
-
-find_path( AVUTIL_INCLUDE_DIR libavutil/avutil.h )
-find_library( AVUTIL_LIBRARY avutil)
-
-#find_path( AVDEVICE_INCLUDE_DIR libavdevice/avdevice.h )
-#find_library( AVDEVICE_LIBRARY avdevice )
-
-#target_include_directories( one PRIVATE ${AVCODEC_INCLUDE_DIR} ${AVFORMAT_INCLUDE_DIR} ${AVUTIL_INCLUDE_DIR} ${AVDEVICE_INCLUDE_DIR})
-
-target_include_directories( one PRIVATE ${AVCODEC_INCLUDE_DIR} ${AVFORMAT_INCLUDE_DIR} ${AVUTIL_INCLUDE_DIR})
-
-#target_link_libraries(one PRIVATE ${AVCODEC_LIBRARY} ${AVFORMAT_LIBRARY} ${AVUTIL_LIBRARY} ${AVDEVICE_LIBRARY})
-
-target_link_libraries(one PRIVATE ${AVCODEC_LIBRARY} ${AVFORMAT_LIBRARY} ${AVUTIL_LIBRARY})
-
-
-
-
+#设置编译链接的库 ffmpeg
+target_link_libraries( two avutil avcodec avformat swscale swresample SDL2)
+#target_link_libraries( two avutil avcodec avfilter  avdevice avformat SDL2)
