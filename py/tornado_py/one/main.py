@@ -1,3 +1,6 @@
+import redis
+import pymongo
+import zmq
 from tornado import web
 from tornado import ioloop
 from tornado import log
@@ -23,7 +26,7 @@ class NumHandler(web.RequestHandler):
 
 
 def main():
-    handlers = [(r"/.*", MainHandler), (r"/(\d*)", NumHandler)]
+    handlers = [(r"/.*", MainHandle), (r"/(\d*)", NumHandler)]
     setting = dict(debug=True)
     app = web.Application(handlers, **setting)
     app.listen(8888)
