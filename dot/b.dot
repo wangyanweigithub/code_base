@@ -1,0 +1,6 @@
+digraph G {
+	node[shape=record,width=.1,height=.1];
+
+	node0[label="<f0>|<f1>|<f2>"]
+	node1[label="{<f0>|<f1>|<f2>}"]
+}
