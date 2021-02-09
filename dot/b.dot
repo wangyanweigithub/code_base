@@ -1,6 +1,48 @@
-digraph G {
-	node[shape=record,width=.1,height=.1];
+digraph otherOp{
+        node [
+            shape = "record"
+            color = "blue"
+    	]
+	edge[
+	    arrowhead = "empty"
+	]
+	
+	// 子图，必须以cluster开头
+	subgraph cluster0{
+		// 子图用浅灰色填充
+		style = filled
+		color = lightgray
+		// 子图名字
+		label = "web server"
+		// 制定整个client_socket填充，且填充的颜色为red，这时边缘是蓝色。不指定颜色，则会用上面的边缘颜色blue填充，导致无法看到边缘。
+        	// 这里使用s0,s1...占位符号
+		client_socket [label = "{<s0>|<s1>head|<s2>|<s3>...|<s4>|<s5>tail|<s6>}" style = "filled" fillcolor = "red"]
 
-	node0[label="<f0>|<f1>|<f2>"]
-	node1[label="{<f0>|<f1>|<f2>}"]
+       		// 指定边上的文字
+		master_thread -> client_socket : s1[label = "produce socket"]
+
+		worker_thread [label = "{<w0> worker_thread 1| <w1> worker_thread 2 | <w2>worker_thread 3}"]
+		client_socket : s5 -> worker_thread : w0
+        	client_socket : s4 -> worker_thread : w1 [ label = "consume socket"]
+        	client_socket : s3 -> worker_thread : w2
+  	
+		producer[ label = "producer" style = filled fillcolor = "green"]
+		consumer[ label = "comsumer" style = filled fillcolor = "green"]
+		Queue[ label = "Queue" style = filled fillcolor = "green"]
+		{rank = same; producer; master_thread}
+		{rank = same; consumer; worker_thread}
+		{rank = same; Queue; client_socket}
+	}
+
+	request1 -> master_thread[color = "red"]
+	request2 -> master_thread[color = "red"]
+	request3 -> master_thread[color = "red"]
+	// 边是虚线，且是橙色
+	request1 -> worker_thread : w0 [ style = "dashed" color = "orange", label = "process request"]
+	request2 -> worker_thread : w1 [ style = "dashed" color = "orange" label = "process request"]
+	request3 -> worker_thread : w2 [ style = "dashed" color = "orange" label = "process request"]
+
+        Browser[ label = "Browser" style = filled fillcolor = "green"]
+	{rank = same; Browser; request1; request2; request3}
+
 }
