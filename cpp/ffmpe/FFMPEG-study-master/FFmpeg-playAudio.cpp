@@ -191,12 +191,16 @@ void audio_callback(void* userdata, Uint8 *stream, int len)
 	}
 }
 
-int main(int argv, char* argc[])
+int main(int argc, char* argv[])
 {
 	av_register_all();
 
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER);
-	char* filename = "/home/wang/D/KuGou/jiaxiangguniang.mp4";
+	char* filename;
+	if (argc > 1)
+		filename = argv[1];
+	else
+		filename = "/home/wang/D/KuGou/jiaxiangguniang.mp4";
 
 	AVFormatContext *pFormatCtx = nullptr;
 	if (avformat_open_input(&pFormatCtx, filename, nullptr, nullptr) != 0)

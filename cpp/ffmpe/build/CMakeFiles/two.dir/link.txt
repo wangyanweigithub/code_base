@@ -1,0 +1,1 @@
+/usr/bin/c++  -fpermissive   CMakeFiles/two.dir/FFMPEG-study-master/FFmpeg-playAudio.cpp.o  -o two   -L/usr/local/ffmpeg/lib  -Wl,-rpath,/usr/local/ffmpeg/lib -lavutil -lavcodec -lavformat -lswscale -lswresample -lSDL2 
