@@ -1,8 +1,8 @@
 import os
+import sys
 
 
 flag = True
-path = "../tornado/"
 
 
 def rm_anno(fs):
@@ -24,10 +24,10 @@ def filter1(line):
     line = line.strip()
     global flag
 
-    if line.startswith('"""') and len(line) > 3 and line.endswith('"""'):
+    if (line.startswith('"""') or line.startswith('r"""')) and len(line) > 3 and line.endswith('"""'):
         return False
 
-    elif flag and line.startswith('"""'):
+    elif flag and (line.startswith('"""') or line.startswith('r"""')):
         flag = False
         return flag
 
@@ -38,6 +38,9 @@ def filter1(line):
         return flag
     
 
-fs = os.listdir(path)
-fs = [i for i in fs if i.endswith(".py")]
-list(map(rm_anno, fs))
+if __name__ == "__main__":
+    path = sys.argv[1] if len(sys.argv) > 1 else "../tornado/" 
+
+    fs = os.listdir(path)
+    fs = [i for i in fs if i.endswith(".py")]
+    list(map(rm_anno, fs))
